@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function serverHandshake(auth) {
   const options = {
-    baseURL: process.env.REACT_APP_BACKEND_URL
+    baseURL: "https://lambda-mud-test.herokuapp.com/"
   };
 
   if (auth) {
