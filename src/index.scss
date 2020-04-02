@@ -72,3 +72,24 @@ code {
     }
   }
 }
+
+// CONTROLLER STYLES
+
+$control-width: 150px;
+$arrow-width: 50px;
+
+.control-div {
+  width: $control-width;
+  height: $control-width;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  .blank-div {
+    width: $arrow-width;
+    height: $arrow-width;
+  }
+  .arrow-img {
+    width: $arrow-width;
+    height: $arrow-width;
+  }
+}
