@@ -5,7 +5,7 @@ const PrivateRoute = props => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    if (!token) navigate("/login");
+    if (!token) navigate("/");
   }, [token]);
 
   let { as: Comp, ...rest } = props;
