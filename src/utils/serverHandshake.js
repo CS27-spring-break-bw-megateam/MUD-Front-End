@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function serverHandshake(auth) {
   const options = {
-    baseURL: "https://lambda-mud-test.herokuapp.com/"
+    baseURL: "https://dungeon-of-coconut.herokuapp.com/"
   };
 
   if (auth) {

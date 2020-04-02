@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "@reach/router";
 import serverHandshake from "../utils/serverHandshake";
+import axios from 'axios';
 
 const Login = ({ navigate }) => {
     const [credentials, setCredentials] = useState({});
@@ -18,21 +19,18 @@ const Login = ({ navigate }) => {
         try {
         console.log(credentials);
         const response = await serverHandshake().post(
-            "/api/login",
+            "/api/login/",
             credentials
         );
         console.log(response);
-        if (response.status === 201) {
-            for (const key in response.data) localStorage.setItem(key, response.data[key]);
+        if (response.status === 200) {
+            localStorage.setItem("token", response.data['key']);
             navigate("/game");
         } else {
             console.error("Something went wrong;", response);
         }
         } catch (error) {
-        // setError(error.response.detail.toLowerCase());
-        // setTimeout(() => {
-        //     setError("");
-        // }, 5000);
+            console.log(error)
         }
     };
 

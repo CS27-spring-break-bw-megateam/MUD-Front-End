@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "@reach/router";
 import serverHandshake from "../utils/serverHandshake";
+import axios from 'axios';
 
 const Register = ({ navigate }) => {
     const [credentials, setCredentials] = useState({});
@@ -15,25 +16,13 @@ const Register = ({ navigate }) => {
 
     const handleSignup = async event => {
         event.preventDefault();
-        try {
-        console.log(credentials);
-        const response = await serverHandshake().post(
-            "/api/registration",
-            credentials
-        );
-        console.log(response);
-        if (response.status === 201) {
-            for (const key in response.data) localStorage.setItem(key, response.data[key]);
-            navigate("/game");
-        } else {
-            console.error("Something went wrong;", response);
-        }
-        } catch (error) {
-        // setError(error.response.detail.toLowerCase());
-        // setTimeout(() => {
-        //     setError("");
-        // }, 5000);
-        }
+        axios.post("https://dungeon-of-coconut.herokuapp.com/api/registration/", credentials)
+        .then(res => {
+            localStorage.setItem("token", res.data['key']);
+        })
+        .catch(err => {
+            console.log(err);
+        })
     };
 
     return (
