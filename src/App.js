@@ -10,10 +10,6 @@ const App = props => (
   <Router>
     <Login path="/" {...props} />
     <Register path="register" {...props} />
-    {/* <Home path="/" /> */}
-    {/* <NavBar path="/">
-      
-    </NavBar> */}
     <PrivateRoute as={Game} path="game" />
   </Router>
 );

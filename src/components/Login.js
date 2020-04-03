@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "@reach/router";
 import serverHandshake from "../utils/serverHandshake";
 import axios from 'axios';
+import NavBar from "./NavBar";
 
 const Login = ({ navigate }) => {
     const [credentials, setCredentials] = useState({});
@@ -35,6 +36,8 @@ const Login = ({ navigate }) => {
     };
 
     return (
+        <>
+        <NavBar/>
         <div className="register-background-div">
             <div className="register-div">
                 <h2 className="register-title">Login</h2>
@@ -96,6 +99,7 @@ const Login = ({ navigate }) => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

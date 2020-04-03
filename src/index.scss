@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(
+      rgba(30, 30, 30, 0.4),
+      rgba(30,30, 30, 0.4)
+      ), url("./images/adventure.png");
+  background-size: 100%;
 }
 
 code {
@@ -12,31 +17,36 @@ code {
     monospace;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300&family=Righteous&display=swap');
+
+// REGISTRATION AND LOGIN STYLES
 
 .register-background-div {
-  background-color: #ffffff;
   display: flex;
   justify-content: center;
   font-family: 'Hind Madurai', sans-serif;
+  margin: 0px;
   .register-div {
     background-color: white;
-    width: 750px;
+    width: 45rem;
     height: 30rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     background-color: rgb(255, 255, 255);
-    margin: 10rem 0 17rem 0;
+    position: absolute;
+    top: calc(50% - 15rem)
   }
   .register-title {
     font-size: 2.5rem;
   }
   .auth-form {
-    width: 650px;
+    width: 40rem;
+    height: 20rem;
     background-color: white;
     .form-label {
-      color: #b1b1b1;
+      color: #8b8b8b;
       font-weight: 500;
     }
     .form-input {
@@ -60,15 +70,16 @@ code {
     font-size: 1rem;
     height: 1.5rem;
     justify-content: flex-start;
-    width: 650px;
+    width: 40rem;
     margin: 1rem 0 1rem 0;
     p {
-      color: #b1b1b1;
+      color: #8b8b8b;
       height: 1rem;
       margin: 0 5px 0 0 ;
     }
     .text-blue {
       text-decoration: none;
+      color: #0004ff;
     }
   }
 }
@@ -84,6 +95,8 @@ $arrow-width: 50px;
   display: flex;
   flex-wrap: wrap;
   border: 1px solid black;
+  border-radius: 50%;
+  background-color: rgb(206, 206, 206);
   .blank-div {
     width: $arrow-width;
     height: $arrow-width;
@@ -91,5 +104,70 @@ $arrow-width: 50px;
   .arrow-img {
     width: $arrow-width;
     height: $arrow-width;
+  }
+}
+
+// NAVBAR STYLES
+
+.nav-div {
+  background-color: rgb(33, 33, 44);
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  font-family: 'Righteous', cursive;
+  padding: .5rem;
+  img {
+    width: 4rem;
+    height: 4rem;
+  }
+  h1 {
+    color: white;
+    margin-left: 1rem;
+  }
+}
+
+.game-page {
+  display: flex;
+  padding: 2rem;
+  justify-content: center;
+  .map-panel {
+    width: 50rem;
+    height: 50rem;
+    background-image : url("./images/paper.jpg");
+    background-size: 100% 100%;
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(33, 33, 44);
+  }
+  .xy-plot {
+    margin: 2rem 2rem 0 0;
+  }
+  .right-panels {
+    font-family: 'Hind Madurai', sans-serif;
+    width: 50rem;
+    height: 50rem;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    .info-panel {
+      color: white;
+      width: 50rem;
+      height: 30rem;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 2rem;
+      border-radius: .5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .h-text {
+        display: flex;
+        align-items: center;
+        * {
+          margin-right: 1rem;
+        }
+      }
+    }
   }
 }

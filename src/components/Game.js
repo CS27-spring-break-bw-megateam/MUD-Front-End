@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import { Link } from "@reach/router";
 import serverHandshake from "../utils/serverHandshake";
 import '../../node_modules/react-vis/dist/style.css';
+import NavBar from './NavBar';
 import arrowup from '../images/arrow_up.png';
 import arrowdown from '../images/arrow_down.png';
 import arrowleft from '../images/arrow_left.png';
@@ -18,9 +19,16 @@ import {
     LineSeriesCanvas 
     } 
     from 'react-vis';
+    
 
 const Game = ({ navigate }) => {
     const [map, setMap] = useState("");
+    const [playerCoord, setPlayerCoord] = useState([{x:4, y:4}])
+    const [currentRoomInfo, setCurrentRoomInfo] = useState({
+        name: "The Entrance",
+        description: "You stand before the entrance to a glorious cave. Adventure awaits inside!",
+        exits: ["n", "s"]
+    })
     
     const getMap = async () => {
         // event.preventDefault();
@@ -38,8 +46,6 @@ const Game = ({ navigate }) => {
             console.log(error);
         }
     };
-    
-    const [playerCoord, setPlayerCoord] = useState([{x:4, y:4}])
 
     const checkValidPath = (x1, y1, x2, y2) => {
         if (exampleConnections.some(elem => 
@@ -88,10 +94,12 @@ const Game = ({ navigate }) => {
     }
 
     const exampleRooms = [
+        {x: 0, y: 0},
         {x: 1, y: 4},
         {x: 1, y: 3},
         {x: 1, y: 2},
         {x: 1, y: 1},
+        {x: 1, y: 0},
         {x: 2, y: 3},
         {x: 2, y: 2},
         {x: 2, y: 1},
@@ -111,6 +119,8 @@ const Game = ({ navigate }) => {
     ];
 
     const exampleConnections = [
+        [{x: 0, y: 0}, {x: 1, y: 0}],
+        [{x: 1, y: 0}, {x: 1, y: 1}],
         [{x: 1, y: 1}, {x: 1, y: 2}],
         [{x: 1, y: 2}, {x: 2, y: 2}],
         [{x: 2, y: 2}, {x: 2, y: 1}],
@@ -133,45 +143,72 @@ const Game = ({ navigate }) => {
     ]
 
     return (
-        <div>
-            <button onClick={() => changePosition()}>Change Position</button>
-            <div className="control-div">
-                <div className="blank-div"/>
-                <img src={arrowup} className="arrow-img" alt="arrowup" onClick={() => changePosition("up")}/>
-                <div className="blank-div"/>
-                <img src={arrowleft} className="arrow-img" alt="arrowleft" onClick={() => changePosition("left")}/>
-                <div className="blank-div"/>
-                <img src={arrowright} className="arrow-img" alt="arrowright" onClick={() => changePosition("right")}/>
-                <div className="blank-div"/>
-                <img src={arrowdown} className="arrow-img" alt="arrowdown" onClick={() => changePosition("down")}/>
-                <div className="blank-div"/>
+        <>
+        <NavBar/>
+        <div className="game-page">
+            <div className="map-panel">
+                <XYPlot height={750} width={750} className="xy-plot">
+                    <VerticalGridLines 
+                        style={{strokeWidth: .3, stroke: "black"}}
+                    />
+                    <HorizontalGridLines 
+                        style={{strokeWidth: .3, stroke: "black"}}
+                    />
+                    {exampleConnections.map((connection, idx) => {
+                        return (
+                            <LineSeries key={`room-connection-${idx}`} data={connection} color="black"/>
+                        )
+                    })}
+                    <MarkSeries
+                        className="map-layout"
+                        strokeWidth={1}
+                        opacity="1"
+                        size={5}
+                        data={exampleRooms}
+                        color="black"
+                    />
+                    <MarkSeries
+                        className="player-position"
+                        strokeWidth={1}
+                        opacity="1"
+                        size={7}
+                        data={playerCoord}
+                        color="red"
+                    />
+                </XYPlot>
             </div>
-            <XYPlot height={800} width={800}>
-                <VerticalGridLines />
-                <HorizontalGridLines />
-                {exampleConnections.map((connection, idx) => {
-                    return (
-                        <LineSeries key={`room-connection-${idx}`} data={connection} color="black"/>
-                    )
-                })}
-                <MarkSeries
-                    className="map-layout"
-                    strokeWidth={1}
-                    opacity="1"
-                    size={5}
-                    data={exampleRooms}
-                    color="black"
-                />
-                <MarkSeries
-                    className="player-position"
-                    strokeWidth={1}
-                    opacity="1"
-                    size={7}
-                    data={playerCoord}
-                    color="red"
-                />
-            </XYPlot>
+            <div className="right-panels">
+                <div className="info-panel">
+                    <div className="room-div">
+                        <h2>Room:</h2>
+                        <p>{currentRoomInfo.name}</p>
+                        <h2>Description:</h2>
+                        <p>{currentRoomInfo.description}</p>
+                        <div className="h-text">
+                            <h2>Exits:</h2>
+                            {currentRoomInfo.exits.map((exit, idx) => {
+                                return (
+                                    <h3 key={`exit-${idx}`}>{exit}</h3>
+                                )
+                            })}
+                        </div>
+                    </div>
+                    <div className="control-div">
+                        <div className="blank-div"/>
+                        <img src={arrowup} className="arrow-img" alt="arrowup" onClick={() => changePosition("up")}/>
+                        <div className="blank-div"/>
+                        <img src={arrowleft} className="arrow-img" alt="arrowleft" onClick={() => changePosition("left")}/>
+                        <div className="blank-div"/>
+                        <img src={arrowright} className="arrow-img" alt="arrowright" onClick={() => changePosition("right")}/>
+                        <div className="blank-div"/>
+                        <img src={arrowdown} className="arrow-img" alt="arrowdown" onClick={() => changePosition("down")}/>
+                        <div className="blank-div"/>
+                    </div>
+                </div>
+            </div>
+            
         </div>
+        </>
     );
 };
 
