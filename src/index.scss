@@ -168,7 +168,7 @@ $arrow-width: 50px;
     .info-panel {
       color: white;
       width: 50rem;
-      height: 30rem;
+      min-height: 30rem;
       background-color: rgba(0, 0, 0, 0.8);
       padding: 2rem;
       border-radius: .5rem;
@@ -177,9 +177,10 @@ $arrow-width: 50px;
       justify-content: space-between;
       .h-text {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         * {
-          margin-right: 1rem;
+          margin-right: .6rem;
         }
       }
     }

@@ -27,6 +27,7 @@ const Game = (props) => {
     const [currentRoomInfo, setCurrentRoomInfo] = useState({
         name: "The Entrance",
         description: "You stand before the entrance to a glorious cave. Adventure awaits inside!",
+        players: ["player1", "player2", "player3", "player4"],
         exits: ["n", "s"]
     })
     
@@ -180,10 +181,22 @@ const Game = (props) => {
             <div className="right-panels">
                 <div className="info-panel">
                     <div className="room-div">
-                        <h2>Room:</h2>
-                        <p>{currentRoomInfo.name}</p>
-                        <h2>Description:</h2>
-                        <p>{currentRoomInfo.description}</p>
+                        <div className="h-text">
+                            <h2>Room:</h2>
+                            <p>{currentRoomInfo.name}</p>
+                        </div>
+                        <div className="h-text">
+                            <h2>Description:</h2>
+                            <p>{currentRoomInfo.description}</p>
+                        </div>
+                        <div className="h-text">
+                            <h2>Other Players Here:</h2>
+                            {currentRoomInfo.players.map((player, idx) => {
+                                return (
+                                    <p key={`player-${idx}`}>{player}</p>
+                                )
+                            })}
+                        </div>
                         <div className="h-text">
                             <h2>Exits:</h2>
                             {currentRoomInfo.exits.map((exit, idx) => {
