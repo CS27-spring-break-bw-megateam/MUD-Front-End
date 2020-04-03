@@ -21,7 +21,7 @@ import {
     from 'react-vis';
     
 
-const Game = ({ navigate }) => {
+const Game = (props) => {
     const [map, setMap] = useState("");
     const [playerCoord, setPlayerCoord] = useState([{x:4, y:4}])
     const [currentRoomInfo, setCurrentRoomInfo] = useState({
@@ -144,7 +144,7 @@ const Game = ({ navigate }) => {
 
     return (
         <>
-        <NavBar/>
+        <NavBar {...props}/>
         <div className="game-page">
             <div className="map-panel">
                 <XYPlot height={750} width={750} className="xy-plot">

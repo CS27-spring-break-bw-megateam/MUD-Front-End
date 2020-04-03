@@ -4,7 +4,7 @@ import serverHandshake from "../utils/serverHandshake";
 import axios from 'axios';
 import NavBar from "./NavBar";
 
-const Login = ({ navigate }) => {
+const Login = (props) => {
     const [credentials, setCredentials] = useState({});
     const [error, setError] = useState("");
 
@@ -26,7 +26,7 @@ const Login = ({ navigate }) => {
         console.log(response);
         if (response.status === 200) {
             localStorage.setItem("token", response.data['key']);
-            navigate("/game");
+            props.navigate("/game");
         } else {
             console.error("Something went wrong;", response);
         }
@@ -37,7 +37,7 @@ const Login = ({ navigate }) => {
 
     return (
         <>
-        <NavBar/>
+        <NavBar {...props}/>
         <div className="register-background-div">
             <div className="register-div">
                 <h2 className="register-title">Login</h2>

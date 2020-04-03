@@ -4,7 +4,7 @@ import serverHandshake from "../utils/serverHandshake";
 import axios from 'axios';
 import NavBar from './NavBar';
 
-const Register = ({ navigate }) => {
+const Register = (props) => {
     const [credentials, setCredentials] = useState({});
     const [error, setError] = useState("");
 
@@ -20,6 +20,7 @@ const Register = ({ navigate }) => {
         axios.post("https://dungeon-of-coconut.herokuapp.com/api/registration/", credentials)
         .then(res => {
             localStorage.setItem("token", res.data['key']);
+            props.navigate("/game");
         })
         .catch(err => {
             console.log(err);
@@ -28,7 +29,7 @@ const Register = ({ navigate }) => {
 
     return (
         <>
-        <NavBar/>
+        <NavBar {...props}/>
         <div className="register-background-div">
             <div className="register-div">
                 <h2 className="register-title">Register</h2>

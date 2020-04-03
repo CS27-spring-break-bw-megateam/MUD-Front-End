@@ -63,6 +63,7 @@ code {
       color: white;
       border: none;
       border-radius: 5px;
+      cursor: pointer;
     }
   }
   .already-div {
@@ -104,6 +105,7 @@ $arrow-width: 50px;
   .arrow-img {
     width: $arrow-width;
     height: $arrow-width;
+    cursor: pointer;
   }
 }
 
@@ -114,17 +116,29 @@ $arrow-width: 50px;
   height: 4rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-family: 'Righteous', cursive;
-  padding: .5rem;
-  img {
-    width: 4rem;
+  padding: .5rem 1rem;
+  color: white;
+  .nav-left {
+    display: flex;
+    align-items: center;
     height: 4rem;
+    img {
+      width: 4rem;
+      height: 4rem;
+    }
+    h1 {
+      margin-left: 1rem;
+    }
   }
-  h1 {
-    color: white;
-    margin-left: 1rem;
+  .logout {
+    cursor: pointer;
   }
+  
 }
+
+// GAME PAGE STYLES
 
 .game-page {
   display: flex;
